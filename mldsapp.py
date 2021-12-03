@@ -6,8 +6,10 @@ Created on Fri Dec  3 11:45:41 2021
 """
 
 import streamlit as st
+from PIL import Image
+import numpy as np
 st.title('Eric Holland Deepfake Demo App')
-st.header('This app gives you 15 possible outputs of different types of deepfakes')
+st.header('This app gives you 25 possible outputs of different types of deepfakes')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
 
@@ -23,8 +25,7 @@ vid_label_full = "What target video do you want to use?"
 video_options_full = ('Eric Holland','Leonardo Dicaprio', "Barack Obama", 'Gal Gadot', "Donald Trump")
 video_select = st.selectbox(vid_label_full, video_options_full, index=0, key=None, help=None, on_change=None, kwargs=None)
 concatvideo = str(video_select)
-concatimg = 'lanaisthisworking'
-concatvideo = 'abc'
+
 filelocator_img = {
     'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/erhresized.png',
     "Mona Lisa" : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/monalisa.png',
@@ -34,24 +35,28 @@ filelocator_img = {
 }
 
 filelocator_video = {
-    'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/ERHresized',
+    'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/myvidresized.mp4',
     'Leonardo Dicaprio' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/Dicaprio.mp4',
     "Barack Obama" : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/Obama.mp4',
     'Gal Gadot' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/GalGadot.mp4',
     'Donald Trump' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/DT.mp4',
-}
+}   
 
 st.header("Here are your selections:")
 
 chosen_image = filelocator_img[image_select]
-st.image(chosen_image, caption = 'This is the image you selected', use_column_width = True)
+image_to_show = Image.open(chosen_image)
+st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
 
 
-chosen_video = filelocator_video[video_select]
-st.image(chosen_video, caption = 'This is the video you selected', use_column_width = True)
-
-concat_name = concatimg + ' ' + concatvideo
-print(concat_name)
+# chosen_video = filelocator_video[video_select]
+# video_file = open(chosen_video, 'r')
+# video_to_show= video_file.read()
+# st.progress
+# st.video(video_to_show)
+# st.progress
+# concat_name = concatimg + ' ' + concatvideo
+# print(concat_name)
 
 
 output_locator = {
@@ -82,10 +87,10 @@ output_locator = {
     'Margot Robbie Donald Trump':'C:/Users/EricH/MachineLearning/MLSDFinal/outputs/RobbieTrump.mp4'
 }
 
-outputvideo_path = output_locator(concat_name)
-video1 = outputvideo_path
-st.video(video1, caption = 'Here is your final video!', use_column_width = True)
 
+# chosen_output = output_locator[concat_name]
+# output_to_show = Image.open(chosen_output)
+# st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
 
 
 
