@@ -8,6 +8,8 @@ Created on Fri Dec  3 11:45:41 2021
 import streamlit as st
 from PIL import Image
 import numpy as np
+import os
+
 st.title('Eric Holland Deepfake Demo App')
 st.header('This app gives you 25 possible outputs of different types of deepfakes')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
@@ -26,7 +28,7 @@ video_options_full = ('Eric Holland','Leonardo Dicaprio', "Barack Obama", 'Gal G
 video_select = st.selectbox(vid_label_full, video_options_full, index=0, key=None, help=None, on_change=None, kwargs=None)
 concatvideo = str(video_select)
 
-
+os.chdir("C:/Users/EricH/MachineLearning/MLSDFinal")
 #Data dictionary for the drop down menus and their corresponding file locations for preview
 filelocator_img = {
     'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/erhresized.png',
@@ -49,17 +51,17 @@ filelocator_video = {
 #Header row for clarity
 st.header("Here are your selections:")
 
+st.image("images//Daddario.png")
+# # show the image to the user and blow it up to be the same width for consistency.
+# chosen_image = filelocator_img[image_select]
+# image_to_show = Image.open(chosen_image)
+# st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
 
-# show the image to the user and blow it up to be the same width for consistency.
-chosen_image = filelocator_img[image_select]
-image_to_show = Image.open(chosen_image)
-st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
-
-#show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
-chosen_video = filelocator_video[video_select]
-video_file = open(chosen_video, 'r')
-st.video(chosen_video)
-st.caption('This is the video you selected.')
+# #show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
+# chosen_video = filelocator_video[video_select]
+# video_file = open(chosen_video, 'r')
+# st.video(chosen_video)
+# st.caption('This is the video you selected.')
 
 
 #get concatenated name so you can call the dictionary for the final output location
@@ -98,13 +100,13 @@ output_locator = {
 
 
 # notes for clarity before final output is generated
-st.markdown("The video will be transposed onto the target image to create a new video.")
-st.header("Here is your final output!")
+# st.markdown("The video will be transposed onto the target image to create a new video.")
+# st.header("Here is your final output!")
 
-#grabs the path of the final output video from the dictionary and displays it
-chosen_output = output_locator[concat_name]
-video_file = open(chosen_output, 'r')
-st.video(chosen_output)
+# #grabs the path of the final output video from the dictionary and displays it
+# chosen_output = output_locator[concat_name]
+# video_file = open(chosen_output, 'r')
+# st.video(chosen_output)
 
 #final explanation and thanks for using to show the user. 
 st.markdown("Note that any preprocessed videos perform better than the raw images and videos of myself.")
