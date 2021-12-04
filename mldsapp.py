@@ -28,14 +28,14 @@ video_options_full = ('Eric Holland','Leonardo Dicaprio', "Barack Obama", 'Gal G
 video_select = st.selectbox(vid_label_full, video_options_full, index=0, key=None, help=None, on_change=None, kwargs=None)
 concatvideo = str(video_select)
 
-os.chdir("C:/Users/EricH/MachineLearning/MLSDFinal")
+
 #Data dictionary for the drop down menus and their corresponding file locations for preview
 filelocator_img = {
-    'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/erhresized.png',
-    "Mona Lisa" : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/monalisa.png',
-    'Pete Davidson' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/petedavidsonresized.png',
-    'Vladimir Putin' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/Putin.png',
-    'Margot Robbie' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/Margotresized.png'
+    'Eric Holland' : 'images//erhresized.png',
+    "Mona Lisa" : 'images//monalisa.png',
+    'Pete Davidson' : 'images/petedavidsonresized.png',
+    'Vladimir Putin' : 'images/Putin.png',
+    'Margot Robbie' : 'images/Margotresized.png'
 }
 
 #Data dictionary for the drop down menus and their corresponding video files for previewing.
