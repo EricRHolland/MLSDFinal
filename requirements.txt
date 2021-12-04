@@ -9,6 +9,5 @@ plotly
 wordcloud
 matplotlib
 pillow
-PIL
 Image
 
