@@ -41,10 +41,10 @@ filelocator_img = {
 #Data dictionary for the drop down menus and their corresponding video files for previewing.
 filelocator_video = {
     'Eric Holland' : 'videos//myvidresized.mp4',
-    'Leonardo Dicaprio' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/Dicaprio.mp4',
-    "Barack Obama" : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/Obama.mp4',
-    'Gal Gadot' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/GalGadot.mp4',
-    'Donald Trump' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/DT.mp4',
+    'Leonardo Dicaprio' : 'videos//Dicaprio.mp4',
+    "Barack Obama" : 'videos//Obama.mp4',
+    'Gal Gadot' : 'videos//GalGadot.mp4',
+    'Donald Trump' : 'videos//DT.mp4',
 }   
 
 
