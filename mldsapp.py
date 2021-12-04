@@ -57,7 +57,6 @@ st.image(image_to_show, caption = 'This is the image you selected', use_column_w
 
 #show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
 chosen_video = filelocator_video[video_select]
-video_file = open(chosen_video, 'r')
 st.video(chosen_video)
 st.caption('This is the video you selected.')
 
