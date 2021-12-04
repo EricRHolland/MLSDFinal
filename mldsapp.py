@@ -52,7 +52,7 @@ st.header("Here are your selections:")
 
 # show the image to the user and blow it up to be the same width for consistency.
 chosen_image = filelocator_img[image_select]
-image_to_show = Image.open(chosen_image)
+image_to_show = open(chosen_image, 'rb')
 st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
 
 #show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
