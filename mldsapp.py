@@ -11,7 +11,7 @@ import numpy as np
 import os
 
 st.title('Eric Holland Deepfake Demo App')
-st.header('This app gives you 25 possible outputs of different types of deepfakes')
+st.header('25 possible combinations of images and videos.')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
 
