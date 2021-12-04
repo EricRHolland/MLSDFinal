@@ -7,8 +7,6 @@ Created on Fri Dec  3 11:45:41 2021
 
 import streamlit as st
 from PIL import Image
-import numpy as np
-import os
 
 st.title('Eric Holland Deepfake Demo App')
 st.header('25 possible combinations of images and videos.')
