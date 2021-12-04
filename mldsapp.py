@@ -9,7 +9,7 @@ import streamlit as st
 from PIL import Image
 
 st.title('Eric Holland Deepfake Demo App')
-st.header('25 possible combinations of images and videos.')
+st.header('25 possible combinations.')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
 
