@@ -99,13 +99,13 @@ output_locator = {
 
 
 # notes for clarity before final output is generated
-# st.markdown("The video will be transposed onto the target image to create a new video.")
-# st.header("Here is your final output!")
+st.markdown("The video will be transposed onto the target image to create a new video.")
+st.header("Here is your final output!")
 
-# #grabs the path of the final output video from the dictionary and displays it
-# chosen_output = output_locator[concat_name]
-# video_file = open(chosen_output, 'r')
-# st.video(chosen_output)
+# grabs the path of the final output video from the dictionary and displays it
+chosen_output = output_locator[concat_name]
+video_file = open(chosen_output, 'r')
+st.video(chosen_output)
 
 #final explanation and thanks for using to show the user. 
 st.markdown("Note that any preprocessed videos perform better than the raw images and videos of myself.")
