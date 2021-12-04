@@ -6,8 +6,7 @@ Created on Fri Dec  3 11:45:41 2021
 """
 
 import streamlit as st
-from PIL import Image
-import numpy as np
+
 st.title('Eric Holland Deepfake Demo App')
 st.header('This app gives you 25 possible outputs of different types of deepfakes')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
