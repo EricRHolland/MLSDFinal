@@ -40,7 +40,7 @@ filelocator_img = {
 
 #Data dictionary for the drop down menus and their corresponding video files for previewing.
 filelocator_video = {
-    'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/myvidresized.mp4',
+    'Eric Holland' : 'videos//myvidresized.mp4',
     'Leonardo Dicaprio' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/Dicaprio.mp4',
     "Barack Obama" : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/Obama.mp4',
     'Gal Gadot' : 'C:/Users/EricH/MachineLearning/MLSDFinal/videos/GalGadot.mp4',
@@ -51,17 +51,16 @@ filelocator_video = {
 #Header row for clarity
 st.header("Here are your selections:")
 
-st.image("images//Daddario.png")
 # # show the image to the user and blow it up to be the same width for consistency.
 chosen_image = filelocator_img[image_select]
 image_to_show = Image.open(chosen_image)
 st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
 
-# #show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
-# chosen_video = filelocator_video[video_select]
-# video_file = open(chosen_video, 'r')
-# st.video(chosen_video)
-# st.caption('This is the video you selected.')
+#show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
+chosen_video = filelocator_video[video_select]
+video_file = open(chosen_video, 'r')
+st.video(chosen_video)
+st.caption('This is the video you selected.')
 
 
 #get concatenated name so you can call the dictionary for the final output location
