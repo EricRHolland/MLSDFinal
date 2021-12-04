@@ -6,7 +6,8 @@ Created on Fri Dec  3 11:45:41 2021
 """
 
 import streamlit as st
-
+from PIL import Image
+import numpy as np
 st.title('Eric Holland Deepfake Demo App')
 st.header('This app gives you 25 possible outputs of different types of deepfakes')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
@@ -51,11 +52,12 @@ st.header("Here are your selections:")
 
 # show the image to the user and blow it up to be the same width for consistency.
 chosen_image = filelocator_img[image_select]
-image_to_show = chosen_image
+image_to_show = Image.open(chosen_image)
 st.image(image_to_show, caption = 'This is the image you selected', use_column_width = True)
 
 #show the video that the user selected. Note that st.video doesnt have a caption function, so did it by hand
 chosen_video = filelocator_video[video_select]
+video_file = open(chosen_video, 'r')
 st.video(chosen_video)
 st.caption('This is the video you selected.')
 
