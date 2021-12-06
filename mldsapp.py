@@ -14,9 +14,7 @@ st.header('25 possible combinations.')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
 
-def load_image(image_file):
-	img = Image.open(image_file)
-	return img
+
 
 y_n = ['Yes.','No.']
 toggleupload = st.selectbox("Do you want to use your own file?",y_n)
@@ -24,6 +22,7 @@ if toggleupload == "Yes":
     new_image = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
 else:
     new_image = False
+    st.write("Try using one of the sample images below.")
 
 
 
