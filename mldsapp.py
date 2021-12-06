@@ -7,8 +7,7 @@ Created on Fri Dec  3 11:45:41 2021
 
 import streamlit as st
 from PIL import Image
-import numpy as np
-import matplotlib.pyplot as plt
+import imageio
 
 st.title('Eric Holland Deepfake Demo App')
 
@@ -16,73 +15,37 @@ st.header('25 possible combinations.')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
 
+
+## Resize image and video to 256x256
+import dlib
+import cv2
+import os
+import matplotlib.pyplot as plt
+import numpy as np
+from imutils.face_utils import FaceAligner
+
+pose_predictor=dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
+fa = FaceAligner(pose_predictor)
+face_encoder=dlib.face_recognition_model_v1('dlib_face_recognition_resnet_model_v1.dat')
+detector = dlib.get_frontal_face_detector()
+modelFile = 'opencv_face_detector_uint8.pb'
+configFile = 'opencv_face_detector.pbtxt'
+net = cv2.dnn.readNetFromTensorflow(modelFile, configFile)
+
+
+
 def load_image(image_file):
 	img = Image.open(image_file)
 	return img
 
-y_n = ['Yes.','No.']
+y_n = ['Yes','No']
 toggleupload = st.selectbox("Do you want to use your own file to see how GAN sees it?",y_n)
 
-if toggleupload == "Yes.":
+if toggleupload == "Yes":
     new_image = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
     if new_image is not None:
         new_image_show = Image.open(new_image)
         st.image(new_image_show)
-        from part_swap import load_checkpoints
-        
-        reconstruction_module, segmentation_module = load_checkpoints(config='config/vox-256-sem-10segments.yaml', 
-                                               checkpoint='/content/gdrive/My Drive/motion-supervised-co-segmentation/vox-10segments.pth.tar',
-                                               blend_scale=1)
-        import torch
-        import torch.nn.functional as F
-
-        import matplotlib.patches as mpatches
-        
-        def visualize_segmentation(image, network, supervised=False, hard=True, colormap='gist_rainbow'):
-            with torch.no_grad():
-                inp = torch.tensor(image[np.newaxis].astype(np.float32)).permute(0, 3, 1, 2).cuda()
-                if supervised:
-                    inp = F.interpolate(inp, size=(512, 512))
-                    inp = (inp - network.mean) / network.std
-                    mask = torch.softmax(network(inp)[0], dim=1)
-                    mask = F.interpolate(mask, size=image.shape[:2])
-                else:
-                    mask = network(inp)['segmentation']
-                    mask = F.interpolate(mask, size=image.shape[:2], mode='bilinear')
-            
-            if hard:
-                mask = (torch.max(mask, dim=1, keepdim=True)[0] == mask).float()
-            
-            colormap = plt.get_cmap(colormap)
-            num_segments = mask.shape[1]
-            mask = mask.squeeze(0).permute(1, 2, 0).cpu().numpy()
-            color_mask = 0
-            patches = []
-            for i in range(num_segments):
-                if i != 0:
-                    color = np.array(colormap((i - 1) / (num_segments - 1)))[:3]
-                else:
-                    color = np.array((0, 0, 0))
-                patches.append(mpatches.Patch(color=color, label=str(i)))
-                color_mask += mask[..., i:(i+1)] * color.reshape(1, 1, 3)
-            
-            fig, ax = plt.subplots(1, 2, figsize=(12,6))
-        
-            ax[0].imshow(color_mask)
-            ax[1].imshow(0.3 * image + 0.7 * color_mask)
-            ax[1].legend(handles=patches)
-            ax[0].axis('off')
-            ax[1].axis('off')
-        
-        visualize_segmentation(new_image, segmentation_module, hard=True)
-        plt.show()    
-                
-            
-            
-            
-            
-            
-            
     else: 
         st.write("Try uploading an image.")
 
@@ -91,7 +54,7 @@ else:
     st.write("Try using one of the sample images below.")
 
 
-st.title("")
+
 #image dropdown selection for the user, generates the first half of output name
 image_label_full = "What do you want your input image to be?"
 image_options_full = ('Eric Holland', "Mona Lisa", 'Pete Davidson','Vladimir Putin',
