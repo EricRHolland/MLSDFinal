@@ -7,6 +7,16 @@ Created on Fri Dec  3 11:45:41 2021
 
 import streamlit as st
 from PIL import Image
+import cv2
+import cv2_tools
+from cv2_tools.Selection import SelectorCV2
+selector = SelectorCV2()
+import numpy as np
+
+
+
+
+
 
 st.title('Eric Holland Deepfake Demo App')
 
@@ -25,9 +35,29 @@ toggleupload = st.selectbox("Do you want to use your own file to see how GAN see
 
 if toggleupload == "Yes":
     new_image = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
+    image_url = st.text_input("Copy the url of a picture with one person in it here:")
+    
+    urlsite = str(new_image)
     if new_image is not None:
+        
+        #show the image to the user
         new_image_show = Image.open(new_image)
         st.image(new_image_show)
+        #import face xml file from github repo
+        
+        face_cascade = cv2.CascadeClassifier('data\\xml\\haarcascade_frontalface_default.xml')
+        image_test = new_image
+        ret, img = cv2.imread('t1.jpg')
+        
+        img = Image.open(new_image)
+        img = np.array(img)
+        faces = face_cascade.detectMultiScale(img, 1.1, 4)
+        for(x,y,w,h) in faces:
+            cv2.rectangle(img, (x,y),
+                          (x+w, y+h), (25,25,255),thickness = 4)
+        a = cv2.imwrite('face_detected_image.png', img) 
+
+        print('successfully saved.')
     else: 
         st.write("Try uploading an image.")
 
@@ -134,3 +164,15 @@ st.markdown("Note that any preprocessed videos perform better than the raw image
 st.markdown("This is because the other images are part of the training files used to tune the GAN neural network.")
 st.markdown("The more training images, the easier the model deals with new variables like different angles or glasses.")
 st.header("Thank you for trying this deepfake simulator!")
+
+
+
+
+# originalImage = cv2.imread("test-image.jpg")
+# savedImage = cv2.imwrite("saved-test-image.jpg",originalImage)
+# If you simply want to copy an image file however, there is no need to load it into memory, you can simply copy the file, without using opencv:
+
+# from shutil import copyfile
+
+# originalImage = "test-image.jpg"
+# copyfile(originalImage,"saved-test-image.jpg")

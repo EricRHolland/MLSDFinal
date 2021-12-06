@@ -16,11 +16,12 @@ pyparsing
 python-dateutil
 pytz
 PyWavelets
-PyYAML==3.13
-scikit-image
+PyYAML
 scikit-learn
 scipy
 six
 toolz
 opencv-python
+CMake
+scikit-image
 tqdm
