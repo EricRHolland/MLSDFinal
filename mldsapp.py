@@ -9,8 +9,23 @@ import streamlit as st
 from PIL import Image
 
 st.title('Eric Holland Deepfake Demo App')
+
 st.header('25 possible combinations.')
 st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
+
+
+def load_image(image_file):
+	img = Image.open(image_file)
+	return img
+
+y_n = ['Yes.','No.']
+toggleupload = st.selectbox("Do you want to use your own file?",y_n)
+if toggleupload == "Yes":
+    new_image = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
+else:
+    new_image = False
+
+
 
 
 #image dropdown selection for the user, generates the first half of output name
@@ -20,7 +35,7 @@ image_options_full = ('Eric Holland', "Mona Lisa", 'Pete Davidson','Vladimir Put
 image_select = st.selectbox(image_label_full, image_options_full , index=0, key=None, help=None, on_change=None, kwargs=None)
 concatimg = str(image_select)
 
-# video dropdown selection for the user, generates second half of name output for final video. 
+# video dropdown selection for the user, generates second half of name output for final video.
 vid_label_full = "What target video do you want to use?"
 video_options_full = ('Eric Holland','Leonardo Dicaprio', "Barack Obama", 'Gal Gadot', "Donald Trump")
 video_select = st.selectbox(vid_label_full, video_options_full, index=0, key=None, help=None, on_change=None, kwargs=None)
@@ -43,7 +58,7 @@ filelocator_video = {
     "Barack Obama" : 'videos//Obama.mp4',
     'Gal Gadot' : 'videos//GalGadot.mp4',
     'Donald Trump' : 'videos//DT.mp4',
-}   
+}
 
 
 #Header row for clarity
@@ -105,11 +120,8 @@ chosen_output = output_locator[concat_name]
 video_file = open(chosen_output, 'r')
 st.video(chosen_output)
 
-#final explanation and thanks for using to show the user. 
+#final explanation and thanks for using to show the user.
 st.markdown("Note that any preprocessed videos perform better than the raw images and videos of myself.")
 st.markdown("This is because the other images are part of the training files used to tune the GAN neural network.")
 st.markdown("The more training images, the easier the model deals with new variables like different angles or glasses.")
 st.header("Thank you for trying this deepfake simulator!")
-
-
-
