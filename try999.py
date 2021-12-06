@@ -123,14 +123,18 @@ if uploaded_file is not None:
         st.image(frameFace)
         
         
+# Make note without using cv2.read or cv2. imwrite because those crash in streamlit. How to get this working again?
+# imwrite function crashes because it's invalid, but some other functions crash because of the input
+#maybe have to pass the image into a different type of numpy array
 
-img = cv2.imread(image_test)
-faces = face_cascade.detectMultiScale(img, 1.1, 4)
-for(x,y,w,h) in faces:
-    cv2.rectangle(img, (x,y),
-                  (x+w, y+h), (25,25,255),thickness = 4)
-a = cv2.imwrite('face_detected_image.png', img) 
 
-print('successfully saved.')
+# img = cv2.imread(image_test)
+# faces = face_cascade.detectMultiScale(img, 1.1, 4)
+# for(x,y,w,h) in faces:
+#     cv2.rectangle(img, (x,y),
+#                   (x+w, y+h), (25,25,255),thickness = 4)
+# a = cv2.imwrite('face_detected_image.png', img) 
+
+# print('successfully saved.')
 
 
