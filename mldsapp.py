@@ -7,7 +7,6 @@ Created on Fri Dec  3 11:45:41 2021
 
 import streamlit as st
 from PIL import Image
-import imageio
 
 st.title('Eric Holland Deepfake Demo App')
 
