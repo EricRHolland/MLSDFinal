@@ -137,7 +137,7 @@ if toggleupload == "Facial Recognition":
         st.markdown("Please upload an image of 1 or more people to begin.")
 
 elif toggleupload == 'Deepfake Generators':
-    st.title('Deepfake Demo')
+    st.title('Deepfake Demo App')
     st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
     #image dropdown selection for the user, generates the first half of output name
