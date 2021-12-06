@@ -126,6 +126,7 @@ if uploaded_file is not None:
 # Make note without using cv2.read or cv2. imwrite because those crash in streamlit. How to get this working again?
 # imwrite function crashes because it's invalid, but some other functions crash because of the input
 #maybe have to pass the image into a different type of numpy array
+# try using some sampple code, if it still doesnt work resort to previous working version from main file
 
 
 # img = cv2.imread(image_test)
