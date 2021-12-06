@@ -11,181 +11,126 @@ from PIL import Image,ImageEnhance
 import numpy as np 
 import os
 
+ #SOURCES:
+# https://learnopencv.com/age-gender-classification-using-opencv-deep-learning-c-python/, model loading and usage code taken from there
+# https://discuss.streamlit.io/t/remove-made-with-streamlit-from-bottom-of-app/1370/2,
+# Hiding the hamburger menu and watermark
 
-face_cascade = cv2.CascadeClassifier('face_detector.xml')
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-smile_cascade = cv2.CascadeClassifier('haarcascade_smile.xml')
+import time
 
-
-
-def detect_faces(our_image):
-    #convert to rgb encoding
-	new_img = np.array(our_image.convert('RGB'))
-	img = cv2.cvtColor(new_img,1)
-	gray = cv2.cvtColor(new_img, cv2.COLOR_BGR2GRAY)
-	# Detect face from the user upload
-	faces = face_cascade.detectMultiScale(gray, 1.1, 4)
-	# Draw rectangle around the faces
-	for (x, y, w, h) in faces:
-				 cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
-	return img,faces 
-
-
-def detect_eyes(our_image):
-    #convert to rgb encoding
-	new_img = np.array(our_image.convert('RGB'))
-	img = cv2.cvtColor(new_img,1)
-    #convert to greyscale
-	gray = cv2.cvtColor(new_img, cv2.COLOR_BGR2GRAY)
-	eyes = eye_cascade.detectMultiScale(gray, 1.3, 5)
-	for (ex,ey,ew,eh) in eyes:
-	        cv2.rectangle(img,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-	return img
-
-def detect_smiles(our_image):
-    #convert to rgb encoding
-	new_img = np.array(our_image.convert('RGB'))
-	img = cv2.cvtColor(new_img,1)
-	gray = cv2.cvtColor(new_img, cv2.COLOR_BGR2GRAY)
-	# smile from uploaded image
-	smiles = smile_cascade.detectMultiScale(gray, 1.1, 4)
-	# Draw rectangle around the Smiles
-	for (x, y, w, h) in smiles:
-	    cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
-	return img
-
-def cartonize_image(our_image):
-	new_img = np.array(our_image.convert('RGB'))
-	img = cv2.cvtColor(new_img,1)
-	gray = cv2.cvtColor(new_img, cv2.COLOR_BGR2GRAY)
-	gray = cv2.medianBlur(gray, 5)
-	edges = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 9)
-	#add a color that you specify, changed to blue later
-	color = cv2.bilateralFilter(img, 9, 300, 300)
-	#Cartoon
-	cartoon = cv2.bitwise_and(color, color, mask=edges)
-
-	return cartoon
-
-
-def cannize_image(our_image):
-	new_img = np.array(our_image.convert('RGB'))
-	img = cv2.cvtColor(new_img,1)
-	img = cv2.GaussianBlur(img, (11, 11), 0)
-	canny = cv2.Canny(img, 100, 150)
-	return canny
-
-def main():
-	"""Face Detection App"""
-
-	st.title("Face Detection App")
-	st.text("Build with Streamlit and OpenCV")
-
-	activities = ["Detection","About"]
-	choice = st.sidebar.selectbox("Select Activty",activities)
-
-	if choice == 'Detection':
-		st.subheader("Face Detection")
-
-		image_file = st.file_uploader("Upload Image",type=['jpg','png','jpeg'])
-
-		if image_file is not None:
-			our_image = Image.open(image_file)
-			st.text("Original Image")
-			# st.write(type(our_image))
-			st.image(our_image)
-
-		enhance_type = st.sidebar.radio("Enhance Type",["Original","Gray-Scale","Contrast","Brightness","Blurring"])
-		if enhance_type == 'Gray-Scale':
-			new_img = np.array(our_image.convert('RGB'))
-			img = cv2.cvtColor(new_img,1)
-			gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-			# st.write(new_img)
-			st.image(gray)
-		elif enhance_type == 'Contrast':
-			c_rate = st.sidebar.slider("Contrast",0.5,3.5)
-			enhancer = ImageEnhance.Contrast(our_image)
-			img_output = enhancer.enhance(c_rate)
-			st.image(img_output)
-
-		elif enhance_type == 'Brightness':
-			c_rate = st.sidebar.slider("Brightness",0.5,3.5)
-			enhancer = ImageEnhance.Brightness(our_image)
-			img_output = enhancer.enhance(c_rate)
-			st.image(img_output)
-
-		elif enhance_type == 'Blurring':
-			new_img = np.array(our_image.convert('RGB'))
-			blur_rate = st.sidebar.slider("Brightness",0.5,3.5)
-			img = cv2.cvtColor(new_img,1)
-			blur_img = cv2.GaussianBlur(img,(11,11),blur_rate)
-			st.image(blur_img)
-           
-		elif enhance_type == 'Original':
-			st.image(our_image,width=300)
-		else:
-			st.image(our_image,width=300)
+import cv2
+import numpy as np
+import streamlit as st
+from PIL import Image
 
 
 
-		# Face Detection
-		task = ["Faces","Smiles","Eyes","Cannize","Cartonize"]
-		feature_choice = st.sidebar.selectbox("Find Features",task)
-		if st.button("Process"):
+def get_face_box(net, frame, conf_threshold=0.7):
+    opencv_dnn_frame = frame.copy()
+    frame_height = opencv_dnn_frame.shape[0]
+    frame_width = opencv_dnn_frame.shape[1]
+    blob_img = cv2.dnn.blobFromImage(opencv_dnn_frame, 1.0, (300, 300), [
+        104, 117, 123], True, False)
 
-			if feature_choice == 'Faces':
-				result_img,result_faces = detect_faces(our_image)
-				st.image(result_img)
-
-				st.success("Found {} faces".format(len(result_faces)))
-			elif feature_choice == 'Smiles':
-				result_img = detect_smiles(our_image)
-				st.image(result_img)
-
-
-			elif feature_choice == 'Eyes':
-				result_img = detect_eyes(our_image)
-				st.image(result_img)
-
-			elif feature_choice == 'Cartonize':
-				result_img = cartonize_image(our_image)
-				st.image(result_img)
-
-			elif feature_choice == 'Cannize':
-				result_canny = cannize_image(our_image)
-				st.image(result_canny)
+    net.setInput(blob_img)
+    detections = net.forward()
+    b_boxes_detect = []
+    for i in range(detections.shape[2]):
+        confidence = detections[0, 0, i, 2]
+        if confidence > conf_threshold:
+            x1 = int(detections[0, 0, i, 3] * frame_width)
+            y1 = int(detections[0, 0, i, 4] * frame_height)
+            x2 = int(detections[0, 0, i, 5] * frame_width)
+            y2 = int(detections[0, 0, i, 6] * frame_height)
+            b_boxes_detect.append([x1, y1, x2, y2])
+            cv2.rectangle(opencv_dnn_frame, (x1, y1), (x2, y2),
+                          (0, 255, 0), int(round(frame_height / 150)), 8)
+    return opencv_dnn_frame, b_boxes_detect
 
 
+st.write("""
+    # Age and Gender prediction
+    """)
 
+st.write("## Upload a picture that contains a face")
 
-	elif choice == 'About':
-		st.subheader("About Face Detection App")
+uploaded_file = st.file_uploader("Choose a file:")
+if uploaded_file is not None:
+    image = Image.open(uploaded_file)
+    cap = np.array(image)
+    cv2.imwrite('temp.jpg', cv2.cvtColor(cap, cv2.COLOR_BGR2GRAY))
+    cap=cv2.imread('temp.jpg')
 
+    face_txt_path="opencv_face_detector.pbtxt"
+    face_model_path="opencv_face_detector_uint8.pb"
 
+    age_txt_path="age_deploy.prototxt"
+    age_model_path="age_net.caffemodel"
 
+    gender_txt_path="gender_deploy.prototxt"
+    gender_model_path="gender_net.caffemodel"
 
-if __name__ == '__main__':
-		main()	
+    MODEL_MEAN_VALUES=(78.4263377603, 87.7689143744, 114.895847746)
+    age_classes=['Age: ~1-2', 'Age: ~3-5', 'Age: ~6-14', 'Age: ~16-22',
+                   'Age: ~25-30', 'Age: ~32-40', 'Age: ~45-50', 'Age: age is greater than 60']
+    gender_classes = ['Gender:Male', 'Gender:Female']
 
+    age_net = cv2.dnn.readNet(age_model_path, age_txt_path)
+    gender_net = cv2.dnn.readNet(gender_model_path, gender_txt_path)
+    face_net = cv2.dnn.readNet(face_model_path, face_txt_path)
 
+    padding = 20
+    t = time.time()
+    frameFace, b_boxes = get_face_box(face_net, cap)
+    if not b_boxes:
+        st.write("No face Detected, Checking next frame")
 
+    for bbox in b_boxes:
+        face = cap[max(0, bbox[1] -
+                       padding): min(bbox[3] +
+                                    padding, cap.shape[0] -
+                                    1), max(0, bbox[0] -
+                                            padding): min(bbox[2] +
+                                                          padding, cap.shape[1] -
+                                                          1)]
 
+        blob = cv2.dnn.blobFromImage(
+            face, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
+        gender_net.setInput(blob)
+        gender_pred_list = gender_net.forward()
+        gender = gender_classes[gender_pred_list[0].argmax()]
+        st.write(
+            f"Gender : {gender}, confidence = {gender_pred_list[0].max() * 100}%")
 
+        age_net.setInput(blob)
+        age_pred_list = age_net.forward()
+        age = age_classes[age_pred_list[0].argmax()]
+        st.write(f"Age : {age}, confidence = {age_pred_list[0].max() * 100}%")
 
+        label = "{},{}".format(gender, age)
+        cv2.putText(
+            frameFace,
+            label,
+            (bbox[0],
+             bbox[1] - 10),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.8,
+            (0,
+             255,
+             255),
+            2,
+            cv2.LINE_AA)
+        st.image(frameFace)
+        
+        
 
+# img = cv2.imread(image_test)
+# faces = face_cascade.detectMultiScale(img, 1.1, 4)
+# for(x,y,w,h) in faces:
+#     cv2.rectangle(img, (x,y),
+#                   (x+w, y+h), (25,25,255),thickness = 4)
+# a = cv2.imwrite('face_detected_image.png', img) 
 
-
-
-image_test = 'C:/Users/EricH/MachineLearning/MLSDFinal/lanatest.jpg'
-
-
-img = cv2.imread(image_test)
-faces = face_cascade.detectMultiScale(img, 1.1, 4)
-for(x,y,w,h) in faces:
-    cv2.rectangle(img, (x,y),
-                  (x+w, y+h), (25,25,255),thickness = 4)
-a = cv2.imwrite('face_detected_image.png', img) 
-
-print('successfully saved.')
+# print('successfully saved.')
 
 

@@ -66,7 +66,7 @@ toggleupload = st.sidebar.selectbox("What functions do you want to explore?",mod
 if toggleupload == "Facial Recognition":
     
     #List of possible functions to call
-    features_to_detect = ["Original","Full Faces", "Eyes","Smile","Cartonize", "Black & White Outline"]
+    features_to_detect = ["Select an option","Full Faces", "Eyes","Smile","Cartonize", "Black & White Outline"]
     #removed original from above list because I show the original as the column width before the transform listing
     
     #First sidebar selection that will pop asking which function to call
@@ -81,7 +81,7 @@ if toggleupload == "Facial Recognition":
     new_image = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
     
     #url string if needed (delete later if functionality changes)
-    urlsite = str(new_image)
+    # urlsite = str(new_image)
     
     
     if new_image is not None:
@@ -95,7 +95,6 @@ if toggleupload == "Facial Recognition":
         
         #only way this worked was to use np array instead of Image package in Pillow
         img_array = np.array(image)
-        
         #writing image to a jpg if needed (Maybe delete if functionality changes?)
         
         # img_written = cv2.imwrite('out.jpg', cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR))
@@ -138,8 +137,7 @@ if toggleupload == "Facial Recognition":
         st.markdown("Please upload an image of 1 or more people to begin.")
 
 elif toggleupload == 'Deepfake Generators':
-    st.title('Eric Holland Deepfake Demo App')
-    st.header('25 possible combinations.')
+    st.title('Deepfake Demo')
     st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
 
     #image dropdown selection for the user, generates the first half of output name
@@ -158,7 +156,7 @@ elif toggleupload == 'Deepfake Generators':
     
     #Data dictionary for the drop down menus and their corresponding file locations for preview
     filelocator_img = {
-        'Eric Holland' : 'C:/Users/EricH/MachineLearning/MLSDFinal/images/erhresized.png',
+        'Eric Holland' : 'images//erhresized.png',
         "Mona Lisa" : 'images//monalisa.png',
         'Pete Davidson' : 'images/petedavidsonresized.png',
         'Vladimir Putin' : 'images/Putin.png',
@@ -227,7 +225,7 @@ elif toggleupload == 'Deepfake Generators':
     
     # notes for clarity before final output is generated
     st.markdown("The video will be transposed onto the target image to create a new video.")
-    st.header("Here is your final output!")
+    st.header("Deepfake Output:")
     
     # grabs the path of the final output video from the dictionary and displays it
     chosen_output = output_locator[concat_name]
