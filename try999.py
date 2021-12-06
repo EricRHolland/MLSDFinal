@@ -124,13 +124,13 @@ if uploaded_file is not None:
         
         
 
-# img = cv2.imread(image_test)
-# faces = face_cascade.detectMultiScale(img, 1.1, 4)
-# for(x,y,w,h) in faces:
-#     cv2.rectangle(img, (x,y),
-#                   (x+w, y+h), (25,25,255),thickness = 4)
-# a = cv2.imwrite('face_detected_image.png', img) 
+img = cv2.imread(image_test)
+faces = face_cascade.detectMultiScale(img, 1.1, 4)
+for(x,y,w,h) in faces:
+    cv2.rectangle(img, (x,y),
+                  (x+w, y+h), (25,25,255),thickness = 4)
+a = cv2.imwrite('face_detected_image.png', img) 
 
-# print('successfully saved.')
+print('successfully saved.')
 
 
