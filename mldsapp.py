@@ -246,9 +246,9 @@ elif toggleupload == 'App Summary':
     st.title("Process Summary")
     st.header("Original Vision")
     st.write("This app was originally designed to be one where you upload a file and a GAN neural network will create a deepfake for you.",
-             "However, as the project materialized, it became clear that Streamlit functionality with large neural network models was cumbersome and unreliable.", "\n",
-             "As a result, the project was split into two parts: a sample of deepfake generators and a separate facial recognition app that showcases GAN.")
-    st.write("These two app ideas were formed into 1 via a sidebar that toggles between the two. I've provided a short writeup of how I made this below.")
+             "However, as the project materialized, it became clear that Streamlit functionality with large neural network models was cumbersome and unreliable.")
+    st.write("As a result, the project was split into two parts: a sample of deepfake generators and a separate facial recognition app that showcases GAN.",
+             "These two app ideas were formed into 1 via a sidebar that toggles between the two. I've provided a short writeup of how I made this below.")
     
     #how are the deepfakes generated?
     st.header("Deepfake Generator App Process")
