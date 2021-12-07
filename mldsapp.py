@@ -240,7 +240,7 @@ elif toggleupload == 'Deepfake Generators':
     st.header("Thank you for trying this deepfake simulator!")
 
 
-st.write(row_dict['hotelName'].values[0] , "\n")
+# st.write(row_dict['hotelName'].values[0] , "\n")
 
 elif toggleupload == 'App Summary':
     st.title("Process Summary")
