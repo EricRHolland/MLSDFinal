@@ -127,7 +127,7 @@ if uploaded_file is not None:
 # imwrite function crashes because it's invalid, but some other functions crash because of the input
 #maybe have to pass the image into a different type of numpy array
 # try using some sampple code, if it still doesnt work resort to previous working version from main file
-
+    
 
 # img = cv2.imread(image_test)
 # faces = face_cascade.detectMultiScale(img, 1.1, 4)

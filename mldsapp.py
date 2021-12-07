@@ -58,8 +58,9 @@ def Blackwhiteoutline_detection(inputimg):
 
 
 
+# using base directory to see if it runs locally before deploying.
 
-os.chdir("C:/Users/EricH/MachineLearning/MLSDFinal")
+# os.chdir("C:/Users/EricH/MachineLearning/MLSDFinal")
 mode = ['Facial Recognition','Deepfake Generators']
 toggleupload = st.sidebar.selectbox("What functions do you want to explore?",mode)
 
