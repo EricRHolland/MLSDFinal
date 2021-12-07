@@ -61,7 +61,7 @@ def Blackwhiteoutline_detection(inputimg):
 # using base directory to see if it runs locally before deploying.
 
 # os.chdir("C:/Users/EricH/MachineLearning/MLSDFinal")
-mode = ['Facial Recognition','Deepfake Generators']
+mode = ['Facial Recognition','Deepfake Generators','App Summary']
 toggleupload = st.sidebar.selectbox("What functions do you want to explore?",mode)
 
 if toggleupload == "Facial Recognition":
@@ -240,6 +240,19 @@ elif toggleupload == 'Deepfake Generators':
     st.header("Thank you for trying this deepfake simulator!")
 
 
+
+
+elif toggleupload == 'App Summary':
+    st.title("Process Summary")
+    st.header("Original Vision")
+    st.write("This app was originally designed to be one where you upload a file and a GAN neural network will create a deepfake for you.",
+             "However, as the project materialized, it became clear that Streamlit functionality with large neural network models was cumbersome and unreliable.",
+             "As a result, the project was split into two parts: a sample of deepfake generators and a separate facial recognition app that showcases GAN.")
+    st.write("These two app ideas were formed into 1 via a sidebar that toggles between the two. I've provided a short writeup of how I made this below.")
+    
+    st.header("Deepfake Generator App Process")
+    
+    
 # originalImage = cv2.imread("test-image.jpg")
 # savedImage = cv2.imwrite("saved-test-image.jpg",originalImage)
 # If you simply want to copy an image file however, there is no need to load it into memory, you can simply copy the file, without using opencv:
