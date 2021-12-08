@@ -236,7 +236,7 @@ elif toggleupload == 'Deepfake Generators':
     st.write("This is because the other images are part of the training files used to tune the GAN neural network. Other reasons are that some pictures need to be resized down to 256x256 which can sometimes confuse the algorithm.",
              "While camera quality has increased, the eyes and smile algorithm have remained essentially untouched for the past 5+ years. If you are feeding higher definition images into a machine not trained on them, it will result in errors.",
              "All images perform worse on my video because my eyes are not fixed on a given point and this makes it way more difficult for the parser to identify how to set the eyes.")
-    st.subheader("Why does the algorithm struggle with people turning their heads?")
+    st.subheader("Why do the outputs struggle with people turning their heads?")
     st.write("Just like the previous problem, it has to do with how the algorithm was trained. The training sample videos were always pointed forward and were focused on mapping the facial features correctly. When a target video looks to the side, it can warp the face causing the output to appear alien-like.")
     st.subheader("Thank you for trying this deepfake simulator!")
 
