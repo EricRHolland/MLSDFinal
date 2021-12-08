@@ -284,7 +284,7 @@ elif toggleupload == 'App Summary':
     
     
     st.header("Problems Encountered & Future Additions")
-    original_title = '<p style="font-family:Courier; color:Blue; font-size: 20px;">Why doesnt this work </p>'
+    original_title = '<p style="font-family:Courier; color:Blue; bold:True; font-size: 20px;">Why doesnt this work </p>'
     st.markdown(original_title, unsafe_allow_html=True)
 
         
