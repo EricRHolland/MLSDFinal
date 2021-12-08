@@ -133,6 +133,8 @@ if toggleupload == "Facial Recognition":
         elif feature_list == "Black & White Outline":
             result_imagebw = Blackwhiteoutline_detection(img)
             st.image(result_imagebw, use_column_width=True)
+            st.write("This uses a gaussian process within the OpenCV package to create an outline of the important features of the photo. Ideally, it should draw only the outline of the main subject of a given photo and none of the background objects.",
+                     "While not explicit facial feature recognition, this output gives you a little insight into what the model thinks is the subject of the photo.")
             
         #make sure to run this one before      
         elif feature_list == "Cartoonify":
