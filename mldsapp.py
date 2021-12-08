@@ -286,8 +286,6 @@ elif toggleupload == 'App Summary':
     future_additions = '<p color:Blue; font-size: 40px;">Testing the color blue on text. </p>'
     st.header(future_additions)
     original_title = '<p style="font-family:Courier; color:Blue; font-size: 20px;">Original image</p>'
-    st.markdown(original_title, unsafe_allow_html=True)
-    st.image(image, channels="BGR")
     give_thanks = '<p style="font-family:Courier; color:Blue; font-size: 40px;">Thank you for your time.</p>'
     st.markdown(give_thanks)
 # originalImage = cv2.imread("test-image.jpg")
