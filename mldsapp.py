@@ -11,7 +11,6 @@ from PIL import Image
 import numpy as np
 import os
 import cv2
-import detecto
 from detecto import utils, core, visualize
 import matplotlib.pyplot as plt
 
