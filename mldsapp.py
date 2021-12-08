@@ -111,6 +111,7 @@ if toggleupload == "Facial Recognition":
             #ripped from cv2.face_detection readme on github by the guy who made the xml files
             #incredibly useful
             st.header("**The algorithm found {} face(s)**".format(len(numface)))
+            st.write("This pre-trained model has the most training data of any of the facial recognition models. As such, it's expected to be the most accurate of the 3. See if this is the case on your uploaded image.")
             
         #Eyes will draw blue rectangle around them, be sure to test before publish.
         elif feature_list == "Eyes":
