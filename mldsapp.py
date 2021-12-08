@@ -253,7 +253,8 @@ elif toggleupload == 'App Summary':
     st.header("Deepfake Generator App Process")
     st.write("The original process was running a Google Colab with a pretrained model and allowed users to combine their own image with a sample video.",
              "Some of the packages including ffmpeg have no streamlit functionality, so after a lot of failed attempts to still use the same app workflow, I ended up opting for a sample dictionary model.",
-             "This deepfake relies on calling ")    
+             "This deepfake relies on calling a dictionary of pre-fabricated combinations that are stored in my Github folder for this project. It helped me learn more about pickling and how to format a dictionary.",
+             "The image and video dictionaries build on one another, with the concatenation of both the .img and .vid creating the search code for the combination output file. This helped a lot with organizing my results.")    
 
     #how are the deepfakes generated?
     st.subheader("Deepfake Generator App Retrospective")
