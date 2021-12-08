@@ -262,7 +262,7 @@ elif toggleupload == 'App Summary':
              "Margot Robbie and Pete Davidson are from internet searches, and I uploaded my own photo. The performance of the models on the images in the trained set is noticeably better.",
              "In particular, the encoding of my video to a 256x256 size to comply with the system constraints squished and muddied the image.")
     st.write("The deepfake videos here do poorly when they are asked to move the eyes away from the camera and also have relative movement. Notice how all the source images perform worse with my video.",
-             "This is because the best performing videos by comparison are keeping their eyes or point of focus constant."
+             "This is because the best performing videos are keeping their eyes or point of focus constant, and their encoding of different facial features is fine-tuned."
              "After trying for days to get the GAN to work on Streamlit, I decided to move to an output call model where all the images and videos are stored in Github and callable by dictionary.",
              "This greatly improved runtime but removed the potential for a user to create their own deepfake. This feature will come in a future version.")
 
