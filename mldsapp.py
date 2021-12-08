@@ -284,10 +284,10 @@ elif toggleupload == 'App Summary':
     
     
     future_additions = '<p color:Blue; font-size: 40px;">Testing the color blue on text. </p>'
-    st.header(future_additions)
-    original_title = '<p style="font-family:Courier; color:Blue; font-size: 20px;">Original image</p>'
-    give_thanks = '<p style="font-family:Courier; color:Blue; font-size: 40px;">Thank you for your time.</p>'
-    st.markdown(give_thanks)
+    st.header(future_additions, unsafe_allow_html = True)
+
+    give_thanks = '<p style="font-family:Courier; color:Blue; font-size: 20px;">Original image</p>'
+    st.markdown(give_thanks, unsafe_allow_html=True)
 # originalImage = cv2.imread("test-image.jpg")
 # savedImage = cv2.imwrite("saved-test-image.jpg",originalImage)
 # If you simply want to copy an image file however, there is no need to load it into memory, you can simply copy the file, without using opencv:
