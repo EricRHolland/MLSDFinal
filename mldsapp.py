@@ -292,6 +292,7 @@ elif toggleupload == 'App Summary':
              "It was clear that trying to learn Streamlit implementation for tensorflow with no prior knowledge 2 days before a deadline was not going to work, so I had to adapt.",
              "Overall, I'm happy with how much I pushed myself to learn things that I was completely clueless about just 6 days ago.")
     st.subheader("Thank you for your time.")
+    st.balloons()
 
         
 # originalImage = cv2.imread("test-image.jpg")
