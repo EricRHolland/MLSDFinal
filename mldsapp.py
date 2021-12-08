@@ -251,7 +251,9 @@ elif toggleupload == 'App Summary':
              "These two app ideas were formed into 1 via a sidebar that toggles between the two. I've provided a short writeup of how I made this below.")
     
     st.header("Deepfake Generator App Process")
-    st.write("Add more here:")    
+    st.write("The original process was running a Google Colab with a pretrained model and allowed users to combine their own image with a sample video.",
+             "Some of the packages including ffmpeg have no streamlit functionality, so after a lot of failed attempts to still use the same app workflow, I ended up opting for a sample dictionary model.",
+             "This deepfake relies on calling ")    
 
     #how are the deepfakes generated?
     st.subheader("Deepfake Generator App Retrospective")
