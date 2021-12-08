@@ -287,6 +287,13 @@ elif toggleupload == 'App Summary':
     st.write("One issue I was having is that many of the results for similar GAN and open-CV papers created similar apps on Google Colab or React (a platform similar to streamlit).",
              "I originally envisioned an app similar to this short demo shown below:")
     st.image(tensorflow_old_demo)
+    st.markdown("So why couldn't I just create a new implementation of the demo image shown above?")
+    st.write("The main reason is that the majority of GAN and facial detection/recognition software and code is not meant for active app deployment, as I found out.",
+             "This specific demo runs on a deprecated version of tensorflow and an old version of Python.",
+             "After spending 2 days trying to get CV2 and other packages to work on what I had so far, I didn't want to risk installing a new version of python before the deadline.",
+             "It was clear that trying to learn Streamlit implementation for tensorflow with no prior knowledge 2 days before a deadline was not going to work, so I had to adapt.",
+             "Overall, I'm happy with how much I pushed myself to learn things that I was completely clueless about just 6 days ago.")
+    st.subheader("Thank you for your time.")
 
         
 # originalImage = cv2.imread("test-image.jpg")
