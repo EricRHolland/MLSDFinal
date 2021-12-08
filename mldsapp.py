@@ -151,7 +151,8 @@ if toggleupload == "Facial Recognition":
 
 elif toggleupload == 'Deepfake Generators':
     st.title('Deepfake Demo App')
-    st.write("Use the dropdown menus to generate your own deepfake using the source images and videos. This app takes a sample of 5 images and videos to showcase how GANs use facial feature recognition demonstrated in first section to create a deepfake of a subject.")
+    st.write("Use the dropdown menus to generate your own deepfake using the source images and videos.",
+             "This app takes a sample of 5 images and videos to showcase how GANs use the models demonstrated in the Facial Recognition section to create a deepfake of a subject.")
 
     #image dropdown selection for the user, generates the first half of output name
     image_label_full = "What do you want your input image to be?"
