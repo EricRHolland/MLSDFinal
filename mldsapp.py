@@ -243,8 +243,7 @@ elif toggleupload == 'Deepfake Generators':
 # st.write(row_dict['hotelName'].values[0] , "\n")
 
 elif toggleupload == 'App Summary':
-    st.title("Process Summary")
-    st.header("Original Vision")
+    st.title("Original Vision")
     st.write("This app was originally designed to be one where you upload a file and a GAN neural network will create a deepfake for you.",
              "However, as the project materialized, it became clear that Streamlit functionality with large neural network models was cumbersome and unreliable.")
     st.write("As a result, the project was split into two parts: a sample of deepfake generators and a separate facial recognition app that showcases GAN.",
@@ -272,15 +271,16 @@ elif toggleupload == 'App Summary':
     st.write("The process of the facial feature recognition process is very basic. I'm calling a series of XML files that have the pretrained models in them. The uploaded imaged is parsed by pillow Image package and transformed into a numpy array.",
              "After being converted to a numpy array, it is read as an image through the openCV package, a very popular and powerful image processing package.")
     st.write("Once the openCV package reads the image, it calls a given XML model file based on what the user selects and applies it to the image they upload."
-             "Once it calls the model, the output is again relatively simple. It reprocesses the transformed image with a PIL write function since CV2.imwrite() wouldn't work correctly in Streamlit.",
-             "The output works well with full faces that are facing toward the camera completely. The eyes still do well, but the final 3 XML models are less accurate. This is because their training data was much smaller than the full face recognition dataset.")
+             "Once it calls the model, the output is again relatively simple. It reprocesses the transformed image with a PIL write function since CV2.imwrite() wouldn't work correctly in Streamlit.")
     
         
     st.subheader("Facial Recognition App Retrospective")
     st.write("Facial feature recognition is a precusor to deepfake technology, and I wanted the user to see how a relatively old model performs on newer images or file types that didnt exist 8 years ago.",
              "The facial recognition model is able to identify different facial features like eyes and smiles as well as full faces.",
              "Once, again, these pre trained models require some image processing to do very well (downsizing image files to 256x256 and preferably a uniform or blurred background).")
-    st.write("Add more here.")
+    st.write("The output works well with full faces that are facing toward the camera completely. The eyes still do well, but the final 3 XML models are less accurate. This is because their training data was much smaller than the full face recognition dataset.",
+             "The models were harder than anticipated to implement in Streamlit but I learned how to implement image processing and rewrites without any prior knowledge of image use in Python or Streamlit.",
+             "Since I didn't have any prior knowledge for image and video handling, this project was very challenging to learn and implement with independent study.")
     
     
     st.header("Problems Encountered & Future Additions")
