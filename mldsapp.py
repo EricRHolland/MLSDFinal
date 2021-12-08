@@ -140,6 +140,8 @@ if toggleupload == "Facial Recognition":
         elif feature_list == "Cartoonify":
             result_imagecart = cartoon_detection(img)
             st.image(result_imagecart, use_column_width=True)
+            st.write("The OpenCV package used for all these facial recognition models also contains image processing and image filter capabilities. This one 'cartoonifies' an image. OpenCV also has image filters that can brighten, resize, blur, and crop an image, among others.")
+            
         #o
     #catches people that won't upload an image from getting a blank screen
     else: 
