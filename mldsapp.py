@@ -266,8 +266,8 @@ elif toggleupload == 'App Summary':
 
     st.header("Facial Recognition App Process")
     st.write("The process of the facial feature recognition process is very basic. I'm calling a series of XML files that have the pretrained models in them. The uploaded imaged is parsed by pillow Image package and transformed into a numpy array.",
-             "After being converted to a numpy array, it is read as an image through the openCV package, a very popular and powerful image processing package.",
-             "Once the openCV package reads the image, it calls a given XML model file based on what the user selects and applies it to the image they upload."
+             "After being converted to a numpy array, it is read as an image through the openCV package, a very popular and powerful image processing package.")
+    st.write("Once the openCV package reads the image, it calls a given XML model file based on what the user selects and applies it to the image they upload."
              "Once it calls the model, the output is again relatively simple. It reprocesses the transformed image with a PIL write function since CV2.imwrite() wouldn't work correctly in Streamlit.",
              "The output works well with full faces that are facing toward the camera completely. The eyes still do well, but the final 3 XML models are less accurate. This is because their training data was much smaller than the full face recognition dataset.")
     
