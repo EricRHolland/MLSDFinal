@@ -11,6 +11,10 @@ from PIL import Image
 import numpy as np
 import os
 import cv2
+import detecto
+from detecto import utils, core, visualize
+import matplotlib.pyplot as plt
+
 face_cascade = cv2.CascadeClassifier('face_detector.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 smile_cascade = cv2.CascadeClassifier('haarcascade_smile.xml')
@@ -56,7 +60,12 @@ def Blackwhiteoutline_detection(inputimg):
     cannoli = cv2.Canny(img, 100, 150)
     return cannoli
 
-
+def obj_detection(inputimg):
+       image = utils.read_image(inputimg)
+       model = core.Model()
+       labels, boxes, scores = model.predict_top(image)
+       result = visualize.show_labeled_image(image, boxes, labels)
+       return result
 
 # using base directory to see if it runs locally before deploying.
 
@@ -67,7 +76,7 @@ toggleupload = st.sidebar.selectbox("What functions do you want to explore?",mod
 if toggleupload == "Facial Recognition":
     
     #List of possible functions to call
-    features_to_detect = ["Select an option","Full Faces", "Eyes","Smile","Cartoonify", "Black & White Outline"]
+    features_to_detect = ["Select an option","Full Faces", "Eyes","Smile","Cartoonify", "Black & White Outline","Object Detection"]
     #removed original from above list because I show the original as the column width before the transform listing
     
     #First sidebar selection that will pop asking which function to call
@@ -132,7 +141,11 @@ if toggleupload == "Facial Recognition":
         elif feature_list == "Cartoonify":
             result_imagecart = cartoon_detection(img)
             st.image(result_imagecart, use_column_width=True)
-        #o
+        elif feature_list == "Object Detection":
+            result = obj_detection(img) #using detecto package as of 12/8 added before presentation
+            result = plt.plot() 
+            st.pyplot(result)
+            
     #catches people that won't upload an image from getting a blank screen
     else: 
         st.markdown("Please upload an image of 1 or more people to begin.")
@@ -294,7 +307,7 @@ elif toggleupload == 'App Summary':
              "It was clear that trying to learn Streamlit implementation for tensorflow with no prior knowledge 2 days before a deadline was not going to work, so I had to adapt.",
              "Overall, I'm happy with how much I pushed myself to learn things that I was completely clueless about just 6 days ago.")
     st.subheader("Thank you for your time.")
-
+    st.balloons()
         
 # originalImage = cv2.imread("test-image.jpg")
 # savedImage = cv2.imwrite("saved-test-image.jpg",originalImage)
