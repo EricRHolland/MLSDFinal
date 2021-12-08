@@ -74,7 +74,8 @@ if toggleupload == "Facial Recognition":
     #overall streamlit title that shows on the main page instead of the sidebar
     st.title('Facial Recognition Demo App')
     st.header('Use your own photo!')
-    st.markdown('Upload a photo below and a neural network will identify facial features!')
+    st.markdown('Upload a photo below and a neural network will identify facial features. Please make sure that your photo is a .png, .jpg, or .jpeg. The algorithm also performs best on images that are 256x256 in size.')
+    st.write("If you need to resize your image, [this website](https://onlinepngtools.com/resize-png) is a quick way to resize any image file.")
     
     #File uploader that gives us the new_image, used to create img and array that goes into functions
     new_image = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
