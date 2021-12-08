@@ -67,7 +67,7 @@ toggleupload = st.sidebar.selectbox("What functions do you want to explore?",mod
 if toggleupload == "Facial Recognition":
     
     #List of possible functions to call
-    features_to_detect = ["Select an option","Full Faces", "Eyes","Smile","Cartonize", "Black & White Outline"]
+    features_to_detect = ["Select an option","Full Faces", "Eyes","Smile","Cartoonify", "Black & White Outline"]
     #removed original from above list because I show the original as the column width before the transform listing
     
     #First sidebar selection that will pop asking which function to call
@@ -129,7 +129,7 @@ if toggleupload == "Facial Recognition":
             st.image(result_imagebw, use_column_width=True)
             
         #make sure to run this one before      
-        elif feature_list == "Cartonize":
+        elif feature_list == "Cartoonify":
             result_imagecart = cartoon_detection(img)
             st.image(result_imagecart, use_column_width=True)
         #o
