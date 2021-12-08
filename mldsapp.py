@@ -74,7 +74,7 @@ if toggleupload == "Facial Recognition":
     #overall streamlit title that shows on the main page instead of the sidebar
     st.title('Facial Recognition Demo App')
     st.header('Use your own photo!')
-    st.markdown('Upload a photo below and a neural network will identify facial features. Please make sure that your photo is a .png, .jpg, or .jpeg. The algorithm also performs best on images that are 256x256 in size.')
+    st.markdown('Upload a photo below and a neural network will identify facial features, apply filters, and identify important subjects. Please make sure that your photo is a .png, .jpg, or .jpeg. The algorithm also performs best on images that are 256x256 in size.')
     st.write("If you need to resize your image, [this website](https://onlinepngtools.com/resize-png) is a quick way to resize any image file.")
     
     #File uploader that gives us the new_image, used to create img and array that goes into functions
@@ -151,7 +151,7 @@ if toggleupload == "Facial Recognition":
 
 elif toggleupload == 'Deepfake Generators':
     st.title('Deepfake Demo App')
-    st.markdown('Use the dropdown menus to generate your own deepfake using the source images and videos!')
+    st.write("Use the dropdown menus to generate your own deepfake using the source images and videos. This app takes a sample of 5 images and videos to showcase how GANs use facial feature recognition demonstrated in first section to create a deepfake of a subject.")
 
     #image dropdown selection for the user, generates the first half of output name
     image_label_full = "What do you want your input image to be?"
