@@ -223,7 +223,7 @@ elif toggleupload == 'Deepfake Generators':
     
     
     # notes for clarity before final output is generated
-    st.markdown("The video will be transposed onto the target image to create a new video.")
+    st.markdown("The video will be transposed onto the target image to create a new video that makes it look like the image is moving. It will attempt to mimic the facial expressions and movements of the source video.")
     st.header("Deepfake Output:")
     
     # grabs the path of the final output video from the dictionary and displays it
