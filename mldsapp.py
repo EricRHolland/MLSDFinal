@@ -282,10 +282,11 @@ elif toggleupload == 'App Summary':
              "The models were harder than anticipated to implement in Streamlit but I learned how to implement image processing and rewrites without any prior knowledge of image use in Python or Streamlit.",
              "Since I didn't have any prior knowledge for image and video handling, this project was very challenging to learn and implement with independent study.")
     
-    
+    tensorflow_old_demo = 'images//GAN-demo.gif'
     st.header("Problems Encountered & Future Additions")
-    original_title = '<p style="font-family:Courier; color:Blue; bold:True; font-size: 20px;">Why doesnt this work </p>'
-    st.markdown(original_title, unsafe_allow_html=True)
+    st.write("One issue I was having is that many of the results for similar GAN and open-CV papers created similar apps on Google Colab or React (a platform similar to streamlit).",
+             "I originally envisioned an app similar to this short demo shown below:")
+    st.image(tensorflow_old_demo)
 
         
 # originalImage = cv2.imread("test-image.jpg")
