@@ -133,6 +133,7 @@ if toggleupload == "Facial Recognition":
         elif feature_list == "Black & White Outline":
             result_imagebw = Blackwhiteoutline_detection(img)
             st.image(result_imagebw, use_column_width=True)
+            st.subheader("What does this model do?")
             st.write("This uses a gaussian process within the OpenCV package to create an outline of the important features of the photo. Ideally, it should draw only the outline of the main subject of a given photo and none of the background objects.",
                      "While not explicit facial feature recognition, this output gives you a little insight into what the model thinks is the subject of the photo.")
             
@@ -140,6 +141,7 @@ if toggleupload == "Facial Recognition":
         elif feature_list == "Cartoonify":
             result_imagecart = cartoon_detection(img)
             st.image(result_imagecart, use_column_width=True)
+            st.subheader("What does this model do?")
             st.write("The OpenCV package used for all these facial recognition models also contains image processing and image filter capabilities. This one 'cartoonifies' an image. OpenCV also has image filters that can brighten, resize, blur, and crop an image, among others.")
             
         #o
