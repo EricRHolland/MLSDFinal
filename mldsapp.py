@@ -121,6 +121,11 @@ if toggleupload == "Facial Recognition":
         elif feature_list == "Smile":
             result_imagesmile = smile_detection(img)
             st.image(result_imagesmile, use_column_width=True)
+            st.subheader("Why is the smile detector not as good at avoiding errors as the eyes and face detectors?")
+            st.write("The smile detector has a much smaller training set, so it's easier to fool especially if you have a noisy background that isn't a uniform color.",
+                     "This smile model is deprecated in favor of other more efficient smile detectors, while the eye and face recognition models used in this app form the basis of current algorithms in use today.",
+                     "Since the other two models are still updated, any image you use is more likely to perform better with eye and face detection compared to this smile detection model.")
+            
             
         #make sure to run this one before     
         elif feature_list == "Black & White Outline":
