@@ -110,7 +110,7 @@ if toggleupload == "Facial Recognition":
             #Use this as a counter for multiple face detection, couldve done just 1
             #ripped from cv2.face_detection readme on github by the guy who made the xml files
             #incredibly useful
-            st.header("**The algorithm found {} face(s)**".format(len(numface)))
+            st.header("**The algorithm found {} face(s).**".format(len(numface)))
             st.write("This face detection algorithm is trained on faces that are facing fully forward toward the camera, and is the basis for several models that are still in use today.",
                      "This pre-trained model has the most training data of any of the facial recognition models. As such, it's expected to be the most accurate of the 3. See if this is the case on your uploaded image.")
             
