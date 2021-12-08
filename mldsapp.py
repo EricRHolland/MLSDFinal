@@ -276,10 +276,7 @@ elif toggleupload == 'App Summary':
     st.write("Facial feature recognition is a precusor to deepfake technology, and I wanted the user to see how a relatively old model performs on newer images or file types that didnt exist 8 years ago.",
              "The facial recognition model is able to identify different facial features like eyes and smiles as well as full faces.",
              "Once, again, these pre trained models require some image processing to do very well (downsizing image files to 256x256 and preferably a uniform or blurred background).")
-    st.write("As with the Deepfake Generators, the facial models tend to do poorly when they are asked to do something outside of their training set. The most obvious example of this is the smile generator.",
-             "This is because the best performing videos by comparison are keeping their eyes or point of focus constant."
-             "After trying for days to get the GAN to work on Streamlit, I decided to move to an output call model where all the images and videos are stored in Github and callable by dictionary.",
-             "This greatly improved runtime but removed the potential for a user to create their own deepfake. This feature will come in a future version.")
+    st.write("Add more here.")
     
     
     st.header("Problems Encountered & Future Additions")
