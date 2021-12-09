@@ -148,7 +148,7 @@ st.title("Streamlit Face-GAN Demo")
 
 
 # Ensure that load_pg_gan_model is called only once, when the app first loads.
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
 def load_pg_gan_model():
     """
     Create the tensorflow session.
